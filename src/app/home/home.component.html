@@ -1,0 +1,151 @@
+<section class="min-h-screen w-screen flex justify-center items-center py-24">
+  <div class="flex flex-col md:flex-row max-w-screen-lg px-6 md:px-0">
+    <div class="w-full md:w-1/2">
+      <h1 class="text-5xl md:text-6xl font-bold w-full md:w-4/5">Contact our sales team</h1>
+      <h6 class="text-lg text-gray-500 mt-2">Let's explore how Notion can work for you.</h6>
+
+      <div class="features-box px-4 py-2 mt-3 rounded md:mr-8">
+        <div class="feature border-b py-3 pl-10">
+          <div class="tick">
+            <div class="line-1"></div>
+            <div class="line-2"></div>
+          </div>
+          One flexible tool for your entire company to share knowledge, ship projects, and collaborate.
+        </div>
+        <div class="feature border-b py-3 pl-10">
+          <div class="tick">
+            <div class="line-1"></div>
+            <div class="line-2"></div>
+          </div>
+          Enterprise features to securely manage user access and security.
+        </div>
+        <div class="feature py-3 pl-10">
+          <div class="tick">
+            <div class="line-1"></div>
+            <div class="line-2"></div>
+          </div>
+          Dedicated support to work with you on your setup and help you build the best plan for your company.
+        </div>
+      </div>
+
+      <h6 class="text-md text-gray-500 mt-4">
+        Looking for support? 
+        <a href="" class="underline">Visit help & documentation</a>
+      </h6>
+    </div>
+
+    <div class="w-full md:w-1/2 md:pl-5 mt-12 md:mt-0">
+      <form [formGroup]="contactForm">
+        <div class="flex flex-col md:flex-row w-full">
+          <div class="w-full md:w-1/2 flex flex-col md:pr-4">
+            <label class="text-sm">First name *</label>
+            <input formControlName="first_name" class="border p-2 rounded mt-2" type="text" placeholder="Ada">
+            <h6 
+              *ngIf="formError || contactForm.controls['first_name'].touched" 
+              class="text-sm text-red-500 mt-1"
+            >
+              This field is required.
+            </h6>
+          </div>
+          <div class="w-full md:w-1/2 flex flex-col mt-3 md:mt-0">
+            <label class="text-sm">Last name *</label>
+            <input formControlName="last_name" class="border p-2 rounded mt-2" type="text" placeholder="Lovelace">
+            <h6 
+              *ngIf="formError || contactForm.controls['last_name'].touched" 
+              class="text-sm text-red-500 mt-1"
+            >
+              This field is required.
+            </h6>
+          </div>
+        </div>
+        <div class="flex flex-col mt-4">
+          <label class="text-sm">Work email *</label>
+          <input formControlName="work_email" class="border p-2 rounded mt-2" type="email" placeholder="ada@lovelace.app">
+          <h6 
+            *ngIf="formError || contactForm.controls['work_email'].touched" 
+            class="text-sm text-red-500 mt-1"
+          >
+            This field is required.
+          </h6>
+        </div>
+        <div class="flex flex-col mt-4">
+          <label class="text-sm">Company name *</label>
+          <input formControlName="company_name" class="border p-2 rounded mt-2" type="text" placeholder="Lovelace Inc.">
+          <h6 
+            *ngIf="formError || contactForm.controls['company_name'].touched" 
+            class="text-sm text-red-500 mt-1"
+          >
+            This field is required.
+          </h6>
+        </div>
+        <div class="flex flex-col mt-4">
+          <label class="text-sm">Company size *</label>
+          <select formControlName="company_size" name="company_size" class="border p-2 rounded mt-2">
+            <option value="">Please select...</option>
+            <option value="">1-19 employees</option>
+            <option value="">20-49 employees</option>
+            <option value="">50-99 employees</option>
+            <option value="">100-999 employees</option>
+            <option value="">1000+ employees</option>
+          </select>
+          <h6 
+            *ngIf="formError || contactForm.controls['company_size'].touched" 
+            class="text-sm text-red-500 mt-1"
+          >
+            This field is required.
+          </h6>
+        </div>
+        <div class="flex flex-col mt-4">
+          <label class="text-sm">Country or region *</label>
+          <select formControlName="country" name="country" class="border p-2 rounded mt-2"
+            (change)="selectCountry()"
+          >
+            <option value="">Please select...</option>
+            <option value="">Malaysia</option>
+            <option value="">Singapore</option>
+            <option value="">Indonesia</option>
+          </select>
+          <h6 
+            *ngIf="formError || contactForm.controls['country'].touched" 
+            class="text-sm text-red-500 mt-1"
+          >
+            This field is required.
+          </h6>
+        </div>
+        <div class="flex flex-col mt-4">
+          <label class="text-sm">Anything else</label>
+          <textarea formControlName="notes" class="border p-2 rounded mt-2" cols="3" rows="3"
+            placeholder="How are you looking to use Notion?"
+          ></textarea>
+        </div>
+
+        <div *ngIf="formError || countrySelected" class="mt-4">
+          <div class="flex flex-row">
+            <div>
+              <input type="checkbox">
+            </div>
+            <div class="pl-4">
+              <label class="text-sm font-medium">
+                I agree to Notion sending marketing communications about Notion to me
+              </label>
+            </div>
+          </div>
+
+          <h6 class="w-full md:w-11/12 text-md text-gray-500 mt-4">
+            You may unsubscribe from receiving marketing communications at any time. 
+            Notion’s websites and communications are subject to our 
+            <a href="" class="underline">Privacy Policy.</a>
+          </h6>
+        </div>
+
+        <h6 class="text-md text-gray-500 mt-4">Fields marked with an asterisk (*) are required.</h6>
+
+        <button class="bg-black text-md px-12 py-2 text-white mt-4 rounded"
+          (click)="submit()"
+        >
+          Submit
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
